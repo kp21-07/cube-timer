@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TIMER</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="theme-picker">
+    <label for="cube-type">Theme:</label>
+    <select id="theme-selector">
+      <option value="light">Light</option>
+      <option value="dark">Dark</option>
+      <option value="solarized-light">Solarized Light</option>
+      <option value="solarized-dark">Solarized Dark</option>
+      <option value="cyan-orange">Cyan-Orange</option>
+    </select>
+  </div>
+  
+  <h1>Cube Timer</h1>
+  <p id="instructions">Press <strong>Spacebar</strong> to start/stop the timer</p>
+  <div id="scramble"></div>
+  <label for="cube-type">Choose Cube:</label>
+  <select id="cube-type" onchange="handleCubeChange(this.value)">
+    <option value="3">3x3</option>
+    <option value="2">2x2</option>
+    <option value="4">4x4</option>
+  </select>
+  <div id="timer">0.<span class="millis">00</span></div>
+  <h2 id="ao5-label">Ao5 : <span style = "font-size: 3rem; color: var(--accent-color);">--:--</span></h2>
+  
+  <div class="history-header">
+    <h2>Solve History</h2>
+    <button onclick="clearSolves()" title="Clear All">
+       Clear History
+    </button>
+  </div>
+
+  <div id="history-container">
+    <table id="history"></table>
+  </div>
+
+  <script src="myscript.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</body>
+</html>

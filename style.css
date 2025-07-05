@@ -1,0 +1,159 @@
+:root {
+  --bg-color: #ffffff;
+  --text-color: #111111;
+  --accent-color: #007bff;         /* Blue (primary) */
+  --highlight-color: #e0f0ff;      /* Pale blue */
+  --error-color: #d9534f;          /* Bootstrap red */
+  --success-color: #5cb85c;
+}
+
+/* Light Theme */
+body.light {
+  --bg-color: #ffffff;
+  --text-color: #111111;
+  --accent-color: #007bff;         /* Blue (primary) */
+  --highlight-color: #e0f0ff;      /* Pale blue */
+  --error-color: #d9534f;          /* Bootstrap red */
+  --success-color: #5cb85c;        /* Bootstrap green */
+}
+
+/* Dark Theme */
+body.dark {
+  --bg-color: #121212;
+  --text-color: #e0e0e0;
+  --accent-color: #00bcd4;         /* Cyan */
+  --highlight-color: #1f2a30;      /* Soft dark gray-blue */
+  --error-color: #ff6b6b;
+  --success-color: #81c784;
+}
+
+/* Solarized Theme */
+body.solarized-light {
+  --bg-color: #fdf6e3;
+  --text-color: hsl(196, 13%, 25%);
+  --accent-color: #268bd2;         /* Solarized blue */
+  --highlight-color: #eee8d5;      /* Solarized base2 */
+  --error-color: #dc322f;
+  --success-color: #859900;
+}
+
+/* Solarized Dark Theme */
+body.solarized-dark {
+  --bg-color: hsl(192, 100%, 17%);
+  --text-color: hsl(179, 28%, 51%);
+  --accent-color: #b58900;
+  --highlight-color: #748f9862;
+  --error-color: #dc322f;
+  --success-color: #859900;
+}
+
+/* Cyan-Orange Theme */
+body.cyan-orange {
+  --bg-color: #121212;
+  --text-color: #00bcd4;
+  --accent-color: #ff9600;         /* Cyan */
+  --highlight-color: #1f2a30;      /* Soft dark gray-blue */
+  --error-color: #ff6b6b;
+  --success-color: #81c784;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+    font-family: sans-serif;
+    text-align: center;
+    padding: 20px;
+}
+h1 {
+    color: var(--accent-color);
+    font-size: 3rem;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+p {
+    margin: 0;
+    padding-top: 0;
+}
+#scramble {
+    font-size: 1.8rem;
+    margin: 50px;
+    margin-bottom: 10px;
+}
+#timer {
+    transition: color 0.1s ease;
+    font-size: 8rem;
+    margin: 10px;
+    font-weight: 600;
+}
+#timer.ready {
+color: var(--success-color);
+}
+#timer.not-ready {
+color: var(--error-color);
+}
+#timer .millis {
+    font-size: 6.5rem;
+}
+#ao5-label {
+    margin: 0;
+}
+input {
+    padding: 8px;
+    width: 300px;
+    margin: 10px 0;
+}
+#theme-picker {
+    text-align: right;
+}
+select {
+    border: 1px solid var(--accent-color);
+    background-color: var(--highlight-color);
+    color: var(--text-color);
+}
+.history-header {
+    position: relative;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+.history-header h2 {
+    margin: 0;
+}
+.history-header button {
+    color: var(--text-color);
+    position: absolute;
+    right: 0;
+    top: 50%;
+    text-decoration: underline;
+    transform: translateY(-50%);
+    font-size: 1.1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.history-header button:hover {
+    color: var(--error-color);
+}
+table {
+    margin: 20px auto;
+    border-collapse: collapse;
+    width: 90%;
+}
+#history-container {
+max-height: 21rem;
+overflow-y: auto;
+}
+th, td {
+    border: 1px solid var(--accent-color);
+    padding: 8px;
+    text-align: left;
+}
+th {
+    background-color: var(--highlight-color);
+}
+#instructions {
+    color: gray;
+    font-size: 0.9rem;
+}
