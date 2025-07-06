@@ -9,7 +9,7 @@ Includes features like solve history, scramble generator, note-taking, theming, 
 
 - ⏱️ Spacebar-controlled timer  
 - 📜 View solve history  
-- 🧩 Scramble Generator for 2x2, 3x3, and 4x4 cubes
+- 🧩 Scramble Generator for `2x2`, `3x3`, and `4x4` cubes
 - 📝 Add notes for each solve  
 - 📊 View Ao5 (Average of 5)  
 - 🎨 Switch between multiple themes
