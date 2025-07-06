@@ -1,7 +1,7 @@
 # SpeedCubing Timer
 
 A simple, web-based **speedcubing timer** built with JavaScript.  
-Includes features like solve history, note-taking, theming, and Ao5 (Average of 5) tracking.
+Includes features like solve history, scramble generator, note-taking, theming, and Ao5 (Average of 5) tracking.
 
 ---
 
@@ -9,6 +9,7 @@ Includes features like solve history, note-taking, theming, and Ao5 (Average of 
 
 - ⏱️ Spacebar-controlled timer  
 - 📜 View solve history  
+- 🧩 Generate scrambles for various types of cubes like 3x3, 2x2 and 4x4.
 - 📝 Add notes for each solve  
 - 📊 View Ao5 (Average of 5)  
 - 🎨 Switch between multiple themes
