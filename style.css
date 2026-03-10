@@ -1,9 +1,10 @@
+/* Default/Fallback Theme (if no class is applied, or for elements not using variables) */
 :root {
   --bg-color: #ffffff;
   --text-color: #111111;
-  --accent-color: #007bff;         /* Blue (primary) */
-  --highlight-color: #e0f0ff;      /* Pale blue */
-  --error-color: #d9534f;          /* Bootstrap red */
+  --accent-color: #007bff;
+  --highlight-color: #e0f0ff;
+  --error-color: #d9534f;
   --success-color: #5cb85c;
 }
 
@@ -11,28 +12,28 @@
 body.light {
   --bg-color: #ffffff;
   --text-color: #111111;
-  --accent-color: #007bff;         /* Blue (primary) */
-  --highlight-color: #e0f0ff;      /* Pale blue */
-  --error-color: #d9534f;          /* Bootstrap red */
-  --success-color: #5cb85c;        /* Bootstrap green */
+  --accent-color: #007bff;
+  --highlight-color: #e0f0ff;
+  --error-color: #d9534f;
+  --success-color: #5cb85c;
 }
 
 /* Dark Theme */
 body.dark {
   --bg-color: #121212;
   --text-color: #e0e0e0;
-  --accent-color: #00bcd4;         /* Cyan */
-  --highlight-color: #1f2a30;      /* Soft dark gray-blue */
+  --accent-color: #00bcd4;
+  --highlight-color: #1f2a30;
   --error-color: #ff6b6b;
   --success-color: #81c784;
 }
 
-/* Solarized Theme */
+/* Solarized Light Theme */
 body.solarized-light {
   --bg-color: #fdf6e3;
   --text-color: hsl(196, 13%, 25%);
-  --accent-color: #268bd2;         /* Solarized blue */
-  --highlight-color: #eee8d5;      /* Solarized base2 */
+  --accent-color: #268bd2;
+  --highlight-color: #eee8d5;
   --error-color: #dc322f;
   --success-color: #859900;
 }
@@ -51,20 +52,24 @@ body.solarized-dark {
 body.cyan-orange {
   --bg-color: #121212;
   --text-color: #00bcd4;
-  --accent-color: #ff9600;         /* Cyan */
-  --highlight-color: #1f2a30;      /* Soft dark gray-blue */
+  --accent-color: #ff9600;
+  --highlight-color: #1f2a30;
   --error-color: #ff6b6b;
   --success-color: #81c784;
 }
 
+/* General Body Styling - uses variables */
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
-    transition: background-color 0.3s, color 0.3s;
+    transition: background-color 0.3s, color 0.3s; /* Smooth transitions for theme changes */
     font-family: sans-serif;
     text-align: center;
     padding: 20px;
+    margin: 0; /* Remove default body margin */
 }
+
+/* Other element styling using variables */
 h1 {
     color: var(--accent-color);
     font-size: 3rem;
@@ -104,14 +109,158 @@ input {
     width: 300px;
     margin: 10px 0;
 }
-#theme-picker {
-    text-align: right;
+
+/* Styling for the new theme controls container */
+/* Add these styles to your style.css */
+
+/* Floating Toggle Button */
+.floating-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: var(--accent-color);
+    color: var(--text-color); /* To ensure contrast */
+    border: none;
+    border-radius: 50%; /* Makes it circular */
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1001; /* Ensure it's above other content */
+    transition: background-color 0.3s, transform 0.2s ease-out;
 }
-select {
-    border: 1px solid var(--accent-color);
-    background-color: var(--highlight-color);
+
+.floating-btn:hover {
+    transform: scale(1.05);
+}
+
+/* Floating Theme Controls Wrapper */
+#theme-controls-wrapper {
+    position: fixed;
+    top: 80px; /* Position below the floating button */
+    right: 20px;
+    /* max-width will be taken from #theme-controls */
+    z-index: 1000; /* Below the button but above main content */
+    background-color: var(--bg-color); /* Use body background for the wrapper */
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 10px; /* Padding around the actual controls */
+
+    /* Initial hidden state */
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.95) translateY(-10px); /* Slightly scale down and move up to hide */
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out, visibility 0.3s ease-out;
+
+    /* Max height and overflow for scroll if controls are too tall */
+    max-height: calc(100vh - 100px); /* Adjust as needed, leaves space at top/bottom */
+    overflow-y: auto; /* Scroll if content overflows vertically */
+}
+
+/* Class to show the floating window */
+#theme-controls-wrapper.show {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1) translateY(0); /* Animate to full size and position */
+}
+
+/* Ensure the actual #theme-controls inside the wrapper fits */
+#theme-controls {
+    /* Remove 'position: fixed' or 'margin: auto' if they were causing issues */
+    /* It should now just be a flex container that fills its wrapper */
+    align-items: center; /* Center the controls */
+    border-radius: 8px;
+    max-width: 600px; /* Adjust width as needed */
+    margin: 0; /* Remove auto margins so it sticks to wrapper edges */
+    box-shadow: none; /* Remove redundant shadow from inner div */
+    background-color: transparent; /* Wrapper handles background */
+    padding: 0; /* Wrapper handles padding */
+    max-width: none; /* Let the wrapper define max-width */
+}
+
+/* Adjust the styling of your color picker groups slightly
+   to account for the new wrapper's padding and responsiveness */
+.color-picker-group {
+    /* ... existing styles ... */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content within each group */
+    min-width: 150px; /* Give a minimum width to each column for spacing */
+    flex-basis: calc(33.33% - 20px); /* Adjust for 20px gap between items */
+                                   /* (container_width - (num_gaps * gap_size)) / num_items */
+                                   /* With wrapper padding, calc might be more forgiving */
+}
+
+/* Ensure dropdown options adapt to theme */
+#themeSelector option {
+    background-color: var(--bg-color); /* Theme-aware */
+    color: var(--text-color); /* Theme-aware */
+}
+
+/* Styling for labels */
+#theme-controls label {
+    font-weight: bold;
+    color: var(--text-color); /* Theme-aware text color */
+    margin-bottom: 5px;
+    display: block;
+    text-align: center;
+}
+
+/* Styling for individual color inputs */
+#theme-controls input[type="color"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 60px;
+    height: 35px;
+    border: 2px solid var(--accent-color); /* Theme-aware border */
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: transparent;
+    padding: 0;
+    overflow: hidden;
+    margin: 0 auto;
+    display: block;
+}
+
+/* Optional: Style the inner parts of the color picker for more consistency */
+#theme-controls input[type="color"]::-webkit-color-swatch-wrapper { padding: 0; }
+#theme-controls input[type="color"]::-webkit-color-swatch { border: none; }
+#theme-controls input[type="color"]::-moz-focus-inner { border: none; padding: 0; }
+#theme-controls input[type="color"]::-moz-color-swatch { border: none; }
+
+
+/* Styling for the theme selector dropdown */
+#themeSelector {
+    padding: 8px 12px;
+    border: 2px solid var(--accent-color); /* Theme-aware border */
+    border-radius: 5px;
+    background-color: var(--bg-color); /* Theme-aware background */
+    color: var(--text-color); /* Theme-aware text color */
+    font-size: 1rem;
+    cursor: pointer;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    /* Custom arrow using SVG, ensures it's visible on different backgrounds */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http://www.w3.org/2000/svg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%20viewBox%3D%220%200%20292.4%20292.4%22%3E%3Cpath%20fill%3D%22%23000000%22%20d%3D%22M287%20197.8%20146.2%2057%205.4%20197.8h281.6z%22/%3E%3C/svg%3E');
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 12px;
+    min-width: 150px;
+}
+
+/* Ensure dropdown options adapt to theme */
+#themeSelector option {
+    background-color: var(--bg-color);
     color: var(--text-color);
 }
+
 .history-header {
     position: relative;
     text-align: center;
@@ -120,9 +269,10 @@ select {
 }
 .history-header h2 {
     margin: 0;
+    color: var(--text-color); /* Theme-aware */
 }
 .history-header button {
-    color: var(--text-color);
+    color: var(--text-color); /* Theme-aware */
     position: absolute;
     right: 0;
     top: 50%;
@@ -146,14 +296,15 @@ max-height: 21rem;
 overflow-y: auto;
 }
 th, td {
-    border: 1px solid var(--accent-color);
+    border: 1px solid var(--accent-color); /* Theme-aware */
     padding: 8px;
     text-align: left;
+    color: var(--text-color); /* Theme-aware */
 }
 th {
-    background-color: var(--highlight-color);
+    background-color: var(--highlight-color); /* Theme-aware */
 }
 #instructions {
-    color: gray;
+    color: var(--text-color); /* Theme-aware */
     font-size: 0.9rem;
 }
